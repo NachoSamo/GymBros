@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Este es tu CSS principal; importa la fuente, 
+carga las capas de Tailwind y define estilos base y algunos componentes reutilizables:*/
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-surface-page text-surface-strong font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold text-surface-strong;
+  }
+
+  p {
+    @apply text-surface-muted;
+  }
+
+  a {
+    @apply text-brand-primary hover:text-brand-primaryDark transition-colors;
+  }
+}
+
+/* Componentes reutilizables (botones, tarjetas, chips) */
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-full
+      bg-brand-primary text-white font-medium shadow-sm
+      hover:bg-brand-primaryDark
+      focus-visible:outline-none focus-visible:ring-2
+      focus-visible:ring-brand-primary focus-visible:ring-offset-2
+      focus-visible:ring-offset-surface-page
+      transition-colors;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-full
+      bg-white text-brand-primary font-medium border border-surface-border
+      hover:bg-surface-card
+      focus-visible:outline-none focus-visible:ring-2
+      focus-visible:ring-brand-primary focus-visible:ring-offset-2
+      focus-visible:ring-offset-surface-page
+      transition-colors;
+  }
+
+  .card {
+    @apply bg-surface-card rounded-2xl shadow-card border border-surface-border;
+  }
+
+  .chip {
+    @apply inline-flex items-center rounded-full px-3 py-1
+      text-xs font-medium;
+  }
+
+  .chip-goal-hypertrophy {
+    @apply chip bg-chip-hypertrophy text-brand-primary;
+  }
+
+  .chip-goal-strength {
+    @apply chip bg-chip-strength text-brand-primaryDark;
+  }
+
+  .chip-goal-fatloss {
+    @apply chip bg-chip-fatloss text-status-warning;
+  }
+
+  .chip-goal-maintenance {
+    @apply chip bg-chip-maintenance text-status-success;
+  }
+
+  .chip-status-active {
+    @apply chip bg-status-success/10 text-status-success;
+  }
+
+  .chip-status-inactive {
+    @apply chip bg-surface-border text-surface-muted;
+  }
+}
