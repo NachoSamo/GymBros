@@ -1,0 +1,59 @@
+services:
+  db:
+    image: postgres:17
+    container_name: gymbros-db
+    environment:
+      POSTGRES_DB: gymbros_platform_db
+      POSTGRES_USER: adminSys2025
+      POSTGRES_PASSWORD: Nacho1234
+      TZ: America/Argentina/Cordoba
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - "5435:5432"
+    networks:
+      - gymbros_platform_network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: gymbros_pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ignasamo2@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: Nacho1234
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+    networks:
+      - gymbros_platform_network
+
+  backend:
+    build: ./gbBackend
+    container_name: gymbros-backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/gymbros_platform_db
+      SPRING_DATASOURCE_USERNAME: adminSys2025
+      SPRING_DATASOURCE_PASSWORD: Nacho1234
+      JAVA_TOOL_OPTIONS: -Duser.timezone=America/Argentina/Cordoba
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+    networks:
+      - gymbros_platform_network
+
+  frontend:
+    build: ./gb-frontend
+    container_name: gymbros-frontend
+    depends_on:
+      - backend
+    ports:
+      - "5173:80"
+    networks:
+      - gymbros_platform_network
+
+networks:
+  gymbros_platform_network:
+
+volumes:
+  db_data:

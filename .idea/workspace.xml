@@ -82,6 +82,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Nacho\GymBros" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="configurationStatuses">
       <map>
@@ -130,7 +135,7 @@
       <workItem from="1765561952767" duration="848000" />
       <workItem from="1765571764445" duration="36000" />
       <workItem from="1765571846298" duration="4523000" />
-      <workItem from="1765665001037" duration="12419000" />
+      <workItem from="1765665001037" duration="16441000" />
     </task>
     <servers />
   </component>

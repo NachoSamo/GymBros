@@ -7,7 +7,7 @@ export type Coach = {
 }
 
 export async function getCoaches(name?: string): Promise<Coach[]> {
-    const res = await http.get<Coach[]>("/api/coach",{
+    const res = await http.get<Coach[]>("/coach",{
         params: name ? {name} : undefined,
         }
     )

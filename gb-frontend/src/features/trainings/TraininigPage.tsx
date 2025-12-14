@@ -155,7 +155,7 @@ const TrainingPage: React.FC = () => {
             <DefaultTable
                 columns={tableColumns}
                 data={filteredPlans}
-                onRowClick={(row) => { /* Handle row click */ }}
+                onRowClick={(_row) => { /* Handle row click */ }}
             />
         </div>
     );
