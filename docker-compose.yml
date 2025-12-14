@@ -9,9 +9,10 @@ services:
       TZ: America/Argentina/Cordoba
     volumes:
       - db_data:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d
     ports:
       - "5435:5432"
-    networks:
+    networks:   
       - gymbros_platform_network
 
   pgadmin:
