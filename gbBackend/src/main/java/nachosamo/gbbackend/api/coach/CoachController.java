@@ -46,6 +46,8 @@ public class CoachController {
                 coach.getName(),
                 coach.getSurname(),
                 coach.getEmail()
+                ,coach.getAthletes()
+                ,coach.getSpecialities()
         );
     }
 }

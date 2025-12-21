@@ -1,6 +1,11 @@
 package nachosamo.gbbackend.domain.coach;
+import nachosamo.gbbackend.domain.athlete.Athlete;
+import nachosamo.gbbackend.domain.specialities.Speciality;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table (name = "coach")
@@ -23,20 +28,26 @@ public class Coach {
     @Column (nullable = false, length = 150, unique = true)
     private String email;
 
-    private Coach(String name, String surname, String email) {
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-    }
+    @OneToMany(mappedBy = "coach", fetch = FetchType.LAZY)
+    private Set<Athlete> athletes = new HashSet<>();
 
-    public static Coach create(String name, String surname, String email) {
-        return new Coach(name, surname, email);
-    }
+    private Set<Speciality> specialities = new HashSet<>();
 
     public void updateProfile(String name, String surname, String email){
         this.name = name;
         this.surname = surname;
         this.email = email;
+    }
+
+    // helpers opcionales (recomendado para mantener consistencia bidireccional)
+    public void addAthlete(Athlete athlete) {
+        athletes.add(athlete);
+        athlete.setCoach(this);
+    }
+
+    public void removeAthlete(Athlete athlete) {
+        athletes.remove(athlete);
+        athlete.setCoach(null);
     }
 
 }
